@@ -110,6 +110,13 @@
       height: 10px;
       animation: fall 3s linear infinite;
     }
+    .celebration-gif {
+      width: 250px;
+      height: 250px;
+      object-fit: contain;
+      margin-bottom: 20px;
+      pointer-events: none;
+    }
 
     @keyframes fall {
       from {
@@ -150,10 +157,14 @@
   </div>
 
   <div class="celebration" id="celebrationPage">
+    <img
+      src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdzNxbGMxaXFwMmo3cDA2eDFxbTRhamc3ZXBmN3EzNTN3NWpwNWo2aCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/11sBLVxNs7v6WA/giphy.gif"
+      alt="Celebration gif"
+      class="celebration-gif"
+    />
     <h1>YAY!!! 💖🎉</h1>
     <p>You said yes 😌💘</p>
   </div>
-
   <script>
     const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
