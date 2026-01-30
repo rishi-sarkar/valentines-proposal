@@ -1,0 +1,136 @@
+* {
+  box-sizing: border-box;
+  font-family: "Comic Sans MS", "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffd6e7, #ffeef6);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+img {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+  margin-bottom: 20px;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+h1 {
+  color: #e60073;
+  margin-bottom: 25px;
+}
+
+.buttons {
+  position: relative;
+  height: 120px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  transition: transform 0.2s ease;
+}
+
+#yesBtn {
+  background-color: #ff4d88;
+  color: white;
+  left: 20px;
+  top: 40px;
+}
+
+#noBtn {
+  background-color: #ccc;
+  color: #333;
+  right: 20px;
+  top: 40px;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-110vh) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Celebration */
+.celebration {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: popIn 0.6s ease;
+}
+
+.celebration h1 {
+  font-size: 48px;
+  color: #ff1a75;
+}
+
+.celebration-gif {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+  margin-bottom: 20px;
+  pointer-events: none;
+}
+
+/* Confetti */
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  animation: fall 3s linear infinite;
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(-10vh) rotate(0deg);
+  }
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
