@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Valentine?</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Comic Sans MS", "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffd6e7, #ffeef6);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    img {
+      width: 250px;
+      height: 250px;
+      object-fit: contain;
+      margin-bottom: 20px;
+      pointer-events: none;
+      flex-shrink: 0;
+    }
+
+
+    h1 {
+      color: #e60073;
+      margin-bottom: 25px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 120px;
+      width: 300px;
+      margin: 0 auto;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      transition: transform 0.2s ease;
+    }
+
+    #yesBtn {
+      background-color: #ff4d88;
+      color: white;
+      left: 20px;
+      top: 40px;
+    }
+
+    #noBtn {
+      background-color: #ccc;
+      color: #333;
+      right: 20px;
+      top: 40px;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 20px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.8;
+      z-index: 1;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-110vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .celebration {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: popIn 0.6s ease;
+    }
+
+    .celebration h1 {
+      font-size: 48px;
+      color: #ff1a75;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      animation: fall 3s linear infinite;
+    }
+
+    @keyframes fall {
+      from {
+        transform: translateY(-10vh) rotate(0deg);
+      }
+      to {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+
+    @keyframes popIn {
+      from {
+        transform: scale(0.6);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="mainPage">
+    <img
+      id="mainGif"
+      src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGdoYjZvamc5MWFiOGV4YmVsb3d4aTJwM253ZHFzOGhpd2d3aHRrayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/1wmOyZYoGzz003R03Y/giphy.gif"
+      alt="Valentine gif"
+    />
+
+    <h1>Sabina will you be my valentine? ❤️</h1>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes</button>
+      <button id="noBtn">No</button>
+    </div>
+  </div>
+
+  <div class="celebration" id="celebrationPage">
+    <h1>YAY!!! 💖🎉</h1>
+    <p>You said yes 😌💘</p>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const gif = document.getElementById("mainGif");
+    const mainPage = document.getElementById("mainPage");
+    const celebrationPage = document.getElementById("celebrationPage");
+
+    let yesScale = 1;
+    let noScale = 1;
+    let gifChanged = false;
+
+    noBtn.addEventListener("click", () => {
+      yesScale += 0.25;
+      noScale -= 0.1;
+      if (noScale < 0.5) noScale = 0.5;
+
+      yesBtn.style.transform = `scale(${yesScale})`;
+      noBtn.style.transform = `scale(${noScale})`;
+
+      if (!gifChanged) {
+        gif.src = "https://media.giphy.com/media/l4FGuhL4U2WyjdkaY/giphy.gif";
+        gifChanged = true;
+      }
+    });
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 4 + Math.random() * 4 + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }
+    setInterval(createHeart, 400);
+
+    function createConfetti() {
+      for (let i = 0; i < 120; i++) {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.backgroundColor =
+          ["#ff4d88", "#ffd700", "#66ccff", "#ff9933"][
+            Math.floor(Math.random() * 4)
+          ];
+        confetti.style.animationDuration = 2 + Math.random() * 3 + "s";
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 5000);
+      }
+    }
+
+    yesBtn.addEventListener("click", () => {
+      mainPage.style.display = "none";
+      celebrationPage.style.display = "flex";
+      createConfetti();
+    });
+  </script>
+
+</body>
+</html>
