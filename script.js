@@ -6,10 +6,12 @@ const celebrationPage = document.getElementById("celebrationPage");
 const easterEggBtn = document.getElementById("easterEggBtn");
 const celebrationYesBtn = document.getElementById("celebrationYesBtn");
 const secret2 = document.getElementById("secretMessage2");
-const bgMusic = document.getElementById("bgMusic");
+const yesMusic = document.getElementById("yesMusic");
+const noMusic = document.getElementById("noMusic");
 
 
-let musicStarted = false;
+let yesMusicStarted = false;
+let noMusicStarted = false;
 let yesScale = 1;
 let noScale = 1;
 let gifChanged = false;
@@ -57,7 +59,8 @@ noBtn.addEventListener("click", () => {
   }
 
   if (!errorShown && noClickCount >= 5) {
-    alert("⚠️ Error: Saying no is not supported on this website.");
+    startNoMusic();
+    showNotification("⚠️ Error: Saying no is not supported, stop it ✋.");
     errorShown = true;
   }
 
@@ -73,12 +76,12 @@ noBtn.addEventListener("click", () => {
 yesBtn.addEventListener("click", () => {
   mainPage.style.display = "none";
   celebrationPage.style.display = "flex";
-  startMusic();
+  startYesMusic();
   createConfetti();
 });
 
 easterEggBtn.addEventListener("click", () => {
-  alert("🎉 Congratulations!\n\nI'll watch any show/movie of your choosing \n(you can even pick Heated Rivalry)");
+  showNotification("🎉 Congratulations!\n\nI'll watch any show/movie of your choosing \n(you can even pick Heated Rivalry)");
 });
 
 celebrationYesBtn.addEventListener("click", () => {
@@ -124,23 +127,46 @@ function createConfetti() {
   }
 }
 
-function startMusic() {
-  if (!musicStarted && bgMusic) {
-    console.log("Starting background music");
-    bgMusic.volume = 0.4;
-    bgMusic.play().catch((error) => {
+function startYesMusic() {
+  if (!yesMusicStarted) {
+    yesMusic.volume = 0.4;
+    yesMusic.play().catch((error) => {
       console.log("Music playback failed:", error);
     });
-    musicStarted = true;
+    yesMusicStarted = true;
+  }
+}
+
+function startNoMusic() {
+  if (!noMusicStarted) {
+    noMusic.volume = 0.4;
+    noMusic.play().catch((error) => {
+      console.log("Music playback failed:", error);
+    });
+    noMusicStarted = true;
   }
 }
 
 
+
 function checkWindowSize() {
   if ((window.innerWidth < 400 || window.innerHeight < 400) && !windowSizeAlertShown) {
-    alert("⚠️ Window too small. My love requires more room 💖\n\nI owe you a hotel night out whenever you request it :)");
+    showNotification("⚠️ Window too small. My love requires more room 💖\n\nI owe you a hotel night out whenever you request it :)");
     windowSizeAlertShown = true;
   }
+}
+
+function showNotification(message) {
+  const notification = document.createElement("div");
+  notification.className = "notification";
+  notification.textContent = message;
+  
+  document.body.appendChild(notification);
+  
+  setTimeout(() => {
+    notification.style.opacity = "0";
+    setTimeout(() => notification.remove(), 300);
+  }, 3000);
 }
 
 window.addEventListener("resize", checkWindowSize);
