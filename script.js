@@ -3,6 +3,8 @@ const noBtn = document.getElementById("noBtn");
 const gif = document.getElementById("mainGif");
 const mainPage = document.getElementById("mainPage");
 const celebrationPage = document.getElementById("celebrationPage");
+const easterEggBtn = document.getElementById("easterEggBtn");
+
 
 let yesScale = 1;
 let noScale = 1;
@@ -22,18 +24,20 @@ const yesTexts = [
   "YES 😍",
   "YES 💖",
   "YES!!! 😤",
-  "YES. FINAL ANSWER."
+  "YES!!! 😭",
+  "PLEASE"
 ];
 
 let noClickCount = 0;
 let errorShown = false;
 
 noBtn.addEventListener("click", () => {
-  yesScale += 0.25;
+  yesScale += 0.1;
   noScale -= 0.1;
   if (noScale < 0.5) noScale = 0.5;
+  if (yesScale > 1.5) yesScale = 1.5;
 
-  yesBtn.style.transform = `scale(${yesScale})`;
+  yesBtn.style.transform = `scale(${yesScale}) translateX(-30px)`;
   noBtn.style.transform = `scale(${noScale})`;
 
   noBtn.textContent =
@@ -55,9 +59,14 @@ noBtn.addEventListener("click", () => {
   noClickCount++;
 });
 
+easterEggBtn.addEventListener("click", () => {
+  alert("🎉 Congratulations!\n\nYou’ve won a fancy date downtown 💃✨");
+});
+
+
 // Easter egg 🥚
 console.log(
-  "%cHey Sabina 👀💖\n\nIf you're reading this...\n\nThe answer is still yes 😌",
+  "%cHey Sabina 👀💖\n\nIf you're reading this...\n\nI owe you any 1 thing from Aritzia of your choice 😌",
   "color: hotpink; font-size: 16px; font-weight: bold;"
 );
 

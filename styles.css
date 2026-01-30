@@ -64,6 +64,17 @@ button {
   top: 40px;
 }
 
+#easterEggBtn {
+  position: absolute;
+  width: 260px;
+  height: 80px;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  z-index: 5;
+}
+
 /* Floating hearts */
 .heart {
   position: absolute;
