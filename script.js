@@ -4,6 +4,8 @@ const gif = document.getElementById("mainGif");
 const mainPage = document.getElementById("mainPage");
 const celebrationPage = document.getElementById("celebrationPage");
 const easterEggBtn = document.getElementById("easterEggBtn");
+const celebrationYesBtn = document.getElementById("celebrationYesBtn");
+const secret2 = document.getElementById("secretMessage2");
 
 
 let yesScale = 1;
@@ -57,16 +59,35 @@ noBtn.addEventListener("click", () => {
   }
 
   noClickCount++;
+
+  if (noClickCount === 20) {
+    const secret1 = document.getElementById("secretMessage1");
+    secret1.classList.remove("hidden");
+    secret1.classList.add("visible");
+    }
+});
+
+yesBtn.addEventListener("click", () => {
+  mainPage.style.display = "none";
+  celebrationPage.style.display = "flex";
+  createConfetti();
 });
 
 easterEggBtn.addEventListener("click", () => {
-  alert("🎉 Congratulations!\n\nYou’ve won a fancy date downtown 💃✨");
+  alert("🎉 Congratulations!\n\nYou've won a fancy date downtown 💃✨");
+});
+
+celebrationYesBtn.addEventListener("click", () => {
+    if (noClickCount === 0) {
+        secret2.classList.remove("hidden");
+        secret2.classList.add("visible");
+    }
 });
 
 
 // Easter egg 🥚
 console.log(
-  "%cHey Sabina 👀💖\n\nIf you're reading this...\n\nI owe you any 1 thing from Aritzia of your choice 😌",
+  "%cHey Sabina 👀💖\n\nIf you're reading this...\n\nI owe you a shein cart of your choice 😌",
   "color: hotpink; font-size: 16px; font-weight: bold;"
 );
 
@@ -99,8 +120,14 @@ function createConfetti() {
   }
 }
 
-yesBtn.addEventListener("click", () => {
-  mainPage.style.display = "none";
-  celebrationPage.style.display = "flex";
-  createConfetti();
-});
+function checkWindowSize() {
+  if (window.innerWidth < 500 || window.innerHeight < 500) {
+    console.log(
+      "%c⚠️ Window too small. Love requires more room 💖 \nI owe you a hotel night out whenever you request it :)",
+      "color: hotpink; font-size: 14px; font-weight: bold;"
+    );
+  }
+}
+
+window.addEventListener("resize", checkWindowSize);
+checkWindowSize();
