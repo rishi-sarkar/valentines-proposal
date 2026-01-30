@@ -176,7 +176,28 @@
     let noScale = 1;
     let gifChanged = false;
 
+const noMessages = [
+  "No",
+  "Are you sure?",
+  "Wow.",
+  "This hurts.",
+  "Think again.",
+  "Sabina pls 😭"
+];
+
+const yesTexts = [
+  "Yes",
+  "YES 😍",
+  "YES 💖",
+  "YES!!! 😤",
+  "YES. FINAL ANSWER."
+];
+
+let noClickCount = 0;
+let errorShown = false;
+
     noBtn.addEventListener("click", () => {
+      // Grow / shrink
       yesScale += 0.25;
       noScale -= 0.1;
       if (noScale < 0.5) noScale = 0.5;
@@ -184,11 +205,33 @@
       yesBtn.style.transform = `scale(${yesScale})`;
       noBtn.style.transform = `scale(${noScale})`;
 
+      // Change button text
+      noBtn.textContent =
+        noMessages[Math.min(noClickCount + 1, noMessages.length - 1)];
+
+      yesBtn.textContent =
+        yesTexts[Math.min(noClickCount + 1, yesTexts.length - 1)];
+
+      // Change GIF once
       if (!gifChanged) {
         gif.src = "https://media.giphy.com/media/l4FGuhL4U2WyjdkaY/giphy.gif";
         gifChanged = true;
       }
+
+      // Fake error popup (ONLY once)
+      if (!errorShown && noClickCount >= 5) {
+        alert("⚠️ Error: Saying no is not supported on this website.");
+        errorShown = true;
+      }
+
+      noClickCount++;
     });
+    
+    console.log(
+      "%cHey Sabina 👀💖\n\nIf you're reading this...\n\nThe answer is still yes 😌",
+      "color: hotpink; font-size: 16px; font-weight: bold;"
+    );
+
 
     function createHeart() {
       const heart = document.createElement("div");
@@ -225,3 +268,4 @@
 
 </body>
 </html>
+
