@@ -32,6 +32,7 @@ const yesTexts = [
 
 let noClickCount = 0;
 let errorShown = false;
+let windowSizeAlertShown = false;
 
 noBtn.addEventListener("click", () => {
   yesScale += 0.1;
@@ -121,11 +122,9 @@ function createConfetti() {
 }
 
 function checkWindowSize() {
-  if (window.innerWidth < 500 || window.innerHeight < 500) {
-    console.log(
-      "%c⚠️ Window too small. Love requires more room 💖 \nI owe you a hotel night out whenever you request it :)",
-      "color: hotpink; font-size: 14px; font-weight: bold;"
-    );
+  if ((window.innerWidth < 400 || window.innerHeight < 400) && !windowSizeAlertShown) {
+    alert("⚠️ Window too small. Love requires more room 💖\n\nI owe you a hotel night out whenever you request it :)");
+    windowSizeAlertShown = true;
   }
 }
 
