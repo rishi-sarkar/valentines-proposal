@@ -6,8 +6,10 @@ const celebrationPage = document.getElementById("celebrationPage");
 const easterEggBtn = document.getElementById("easterEggBtn");
 const celebrationYesBtn = document.getElementById("celebrationYesBtn");
 const secret2 = document.getElementById("secretMessage2");
+const bgMusic = document.getElementById("bgMusic");
 
 
+let musicStarted = false;
 let yesScale = 1;
 let noScale = 1;
 let gifChanged = false;
@@ -71,6 +73,7 @@ noBtn.addEventListener("click", () => {
 yesBtn.addEventListener("click", () => {
   mainPage.style.display = "none";
   celebrationPage.style.display = "flex";
+  startMusic();
   createConfetti();
 });
 
@@ -120,6 +123,18 @@ function createConfetti() {
     setTimeout(() => confetti.remove(), 5000);
   }
 }
+
+function startMusic() {
+  if (!musicStarted && bgMusic) {
+    console.log("Starting background music");
+    bgMusic.volume = 0.4;
+    bgMusic.play().catch((error) => {
+      console.log("Music playback failed:", error);
+    });
+    musicStarted = true;
+  }
+}
+
 
 function checkWindowSize() {
   if ((window.innerWidth < 400 || window.innerHeight < 400) && !windowSizeAlertShown) {
