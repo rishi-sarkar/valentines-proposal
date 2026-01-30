@@ -147,6 +147,22 @@ button {
   display: none;
 }
 
+.hidden-message {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: transparent;
+  font-size: 14px;
+  user-select: text;
+  z-index: 10;
+}
+
+.hidden-message::selection {
+  color: #ff1a75;
+  background-color: #ffd6e7;
+}
+
 .celebration-yes {
   background: none;
   border: none;

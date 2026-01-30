@@ -75,7 +75,7 @@ yesBtn.addEventListener("click", () => {
 });
 
 easterEggBtn.addEventListener("click", () => {
-  alert("🎉 Congratulations!\n\nYou've won a fancy date downtown 💃✨");
+  alert("🎉 Congratulations!\n\nI'll watch any show/movie of your choosing \n(you can even pick Heated Rivalry)");
 });
 
 celebrationYesBtn.addEventListener("click", () => {
@@ -123,7 +123,7 @@ function createConfetti() {
 
 function checkWindowSize() {
   if ((window.innerWidth < 400 || window.innerHeight < 400) && !windowSizeAlertShown) {
-    alert("⚠️ Window too small. Love requires more room 💖\n\nI owe you a hotel night out whenever you request it :)");
+    alert("⚠️ Window too small. My love requires more room 💖\n\nI owe you a hotel night out whenever you request it :)");
     windowSizeAlertShown = true;
   }
 }
